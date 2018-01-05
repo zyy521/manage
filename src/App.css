@@ -1,0 +1,73 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.Main-view{
+  width: 450px;
+  margin: 50px auto;
+  border-radius: 2px;
+  background: #fff;
+  padding-bottom: 30px;
+}
+
+.Login-btn{
+  width: 300px;
+  margin-top: 20px;
+}
+
+.Login-bg{
+  height: 160px;
+  width: 100%;
+  position: relative;
+  top: 50px;
+/*  background-image: url("image/login.png") ;
+  background-size: cover;*/
+}
+
+.Login-bg .Login-title{
+  color: #0f88eb;
+  font-size: 45px;
+  font-family: STXinwei,microsoft yahei;
+}
+
+.Login-title2{
+  color: #0f88eb;
+  font-size: 22px;
+  font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
+}
+
+body{
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-image:url("image/loginBg.png") ;
+  color: #fff;
+}
