@@ -71,3 +71,7 @@ body{
   background-image:url("image/loginBg.png") ;
   color: #fff;
 }
+
+.ant-layout-header{
+  background: #2DC3E8!important;
+}

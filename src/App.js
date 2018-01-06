@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button,Input,Tabs, Radio } from 'antd';
+import { Button,Input,Tabs, message } from 'antd';
 import './App.css';
 const { TabPane } = Tabs;
 class App extends React.Component {
@@ -31,6 +31,13 @@ class App extends React.Component {
             loginType: key,
         });
     }
+
+    login(){
+        if(!this.state.pName){
+
+        }
+    }
+
     render() {
         return (
             <div className="App">
@@ -47,7 +54,7 @@ class App extends React.Component {
 
                     <Input placeholder={this.state.pName}  style={{marginTop: 40,marginBottom: 10,width: 300}}/>
                     <Input placeholder={this.state.pPswword} style={{marginTop: 10,marginBottom: 10,width: 300}}/>
-                    <Button type="primary" className="Login-btn">登录</Button>
+                    <Button type="primary" className="Login-btn" onClick={this.login.bind(this)}>登录</Button>
                 </div>
             </div>
         );
