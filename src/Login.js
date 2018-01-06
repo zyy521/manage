@@ -2,8 +2,8 @@
  * Created by czw on 2018/1/6.
  */
 import React, { Component } from 'react';
-import { Button,Input,Tabs, Radio } from 'antd';
-import { BrowserRouter as Router, Route, Link, Redirect, withRouter} from 'react-router-dom'
+import { Button,Input,Tabs} from 'antd';
+import {Redirect} from 'react-router-dom'
 
 const { TabPane } = Tabs;
 class Login extends React.Component {
