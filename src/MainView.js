@@ -5,8 +5,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom'
 import { Layout, Menu, Icon,Dropdown } from 'antd';
 import WorkSpace from './WorkSpace';
+import Course from './Course';
 const { SubMenu } = Menu;
-
+const minHeight = window.innerHeight + 20;
 const { Header, Content, Sider } = Layout;
 class MainView extends React.Component {
     constructor(props){
@@ -14,6 +15,8 @@ class MainView extends React.Component {
         this.state = {
             logined: true
         }
+
+
     }
 
     onLoginOut =()=> {
@@ -64,13 +67,13 @@ class MainView extends React.Component {
                             defaultOpenKeys={['sub1']}
                         >
                             <Menu.Item key="0">
-                               <Link to="/index/workspace"> <Icon type="layout" />
+                               <Link to="/index"> <Icon type="layout" />
                                    工作台</Link>
                             </Menu.Item>
 
                             <Menu.Item key="1">
-                                <Icon type="database" />
-                                课程管理
+                                <Link to="/index/course"><Icon type="database" />
+                                    课程管理</Link>
                             </Menu.Item>
 
                             <Menu.Item key="2">
@@ -105,8 +108,9 @@ class MainView extends React.Component {
                         </Menu>
                     </Sider>
                     <Layout style={{ padding: '0 10px' }}>
-                        <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 700 }}>
-                            <Route exact path="/index/workspace" component={WorkSpace}/>
+                        <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: minHeight }}>
+                            <Route exact path="/index" component={WorkSpace}/>
+                            <Route path="/index/course" component={Course}/>
                         </Content>
                     </Layout>
                 </Layout>

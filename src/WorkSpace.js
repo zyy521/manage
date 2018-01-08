@@ -1,7 +1,5 @@
 
 import React from 'react';
-import "./App.css"
-
 class WorkSpace extends React.Component {
 
     render() {

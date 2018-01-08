@@ -11,8 +11,8 @@ class App extends React.Component {
         return (
             <Router>
                 <div>
-                    <Route exact path="/index" component={MainView}/>
-                    <Route path="/" component={LoginView}/>
+                    <Route path="/index" component={MainView}/>
+                    <Route path="/login" component={LoginView}/>
                 </div>
             </Router>
         )
