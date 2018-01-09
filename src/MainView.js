@@ -23,7 +23,7 @@ class MainView extends React.Component {
             logined: true,
             dataVisible: false,
             userName: "陈瑶琪",
-            userNum: "20170821"
+            userNum: "2014329620037"
         }
     }
 
@@ -88,7 +88,7 @@ class MainView extends React.Component {
                         <FormItem label="专业" {...formItemLayout}>
                             <Input value="xxx" disabled/>
                         </FormItem>
-                        <FormItem label="职称" {...formItemLayout}>
+                        <FormItem label="班级" {...formItemLayout}>
                             <Input value="xxx" disabled/>
                         </FormItem>
                         <FormItem label="入学日期" {...formItemLayout}>
