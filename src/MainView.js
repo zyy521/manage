@@ -3,20 +3,40 @@
  */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom'
-import { Layout, Menu, Icon,Dropdown } from 'antd';
+import { Layout, Menu, Icon,Dropdown,Modal,Row,Col,Form,Input} from 'antd';
 import WorkSpace from './WorkSpace';
 import Course from './Course';
 const { SubMenu } = Menu;
+const FormItem = Form.Item;
+const { TextArea } = Input;
+const formItemLayout = {
+    labelCol: { span: 6 },
+    wrapperCol: { span: 15 },
+};
 const minHeight = window.innerHeight + 20;
+const modalWidth = 866;
 const { Header, Content, Sider } = Layout;
 class MainView extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            logined: true
+            logined: true,
+            dataVisible: false,
+            userName: "陈瑶琪",
+            userNum: "20170821"
         }
+    }
 
+    scanInfo=() =>{
+        this.setState({
+            dataVisible: true
+        })
+    }
 
+    handleCancel = (e) => {
+        this.setState({
+            dataVisible: false,
+        });
     }
 
     onLoginOut =()=> {
@@ -36,10 +56,10 @@ class MainView extends React.Component {
         const menu = (
             <Menu>
                 <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer">查看密码</a>
+                    <a target="_blank" rel="noopener noreferrer" onClick={this.scanInfo}>查看资料</a>
                 </Menu.Item>
                 <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer">修改资料</a>
+                    <a target="_blank" rel="noopener noreferrer">修改密码</a>
                 </Menu.Item>
                 <Menu.Item>
                     <a target="_blank" rel="noopener noreferrer" onClick={this.onLoginOut}>退出</a>
@@ -47,6 +67,64 @@ class MainView extends React.Component {
             </Menu>
         );
         return <Layout>
+            <Modal
+                title="资料详情"
+                visible={this.state.dataVisible}
+                onOk={this.handleOk}
+                className="detailModal"
+                onCancel={this.handleCancel}
+                footer={false}
+                width={modalWidth}
+            >
+                <Row>
+                    <Col span={8}>
+                        <img className="imgPhoto" src="https://www.baidu.com/img/bd_logo1.png" width="50" height="50"/>
+                        <FormItem label="姓名" {...formItemLayout}>
+                                <Input value={this.state.userName} disabled/>
+                        </FormItem>
+                        <FormItem label="学号" {...formItemLayout}>
+                            <Input value={this.state.userNum} disabled/>
+                        </FormItem>
+                        <FormItem label="专业" {...formItemLayout}>
+                            <Input value="xxx" disabled/>
+                        </FormItem>
+                        <FormItem label="职称" {...formItemLayout}>
+                            <Input value="xxx" disabled/>
+                        </FormItem>
+                        <FormItem label="入学日期" {...formItemLayout}>
+                            <Input value="xxx" disabled/>
+                        </FormItem>
+                    </Col>
+                    <Col span={8}>
+                        <FormItem label="籍贯" {...formItemLayout}>
+                            <Input value="xxx" disabled/>
+                        </FormItem>
+                        <FormItem label="民族" {...formItemLayout}>
+                            <Input value="xxx" disabled/>
+                        </FormItem>
+                        <FormItem label="出生日期" {...formItemLayout}>
+                            <Input value="xxx" disabled/>
+                        </FormItem>
+                        <FormItem label="政治面貌" {...formItemLayout}>
+                            <Input value="xxx" disabled/>
+                        </FormItem>
+                        <FormItem label="手机号码" {...formItemLayout}>
+                            <Input value="xxx" disabled/>
+                        </FormItem>
+                        <FormItem label="邮箱" {...formItemLayout}>
+                            <Input value="xxx" disabled/>
+                        </FormItem>
+                        <FormItem label="家庭住址" {...formItemLayout}>
+                            <Input value="xxx" disabled/>
+                        </FormItem>
+                    </Col>
+                    <Col span={8}>
+                        <FormItem label="简介" {...formItemLayout}>
+                            <TextArea value="xxx" disabled/>
+                        </FormItem>
+                    </Col>
+                </Row>
+            </Modal>
             <Header className="header">
                 <div className="logo" />
                 <Icon type="apple" style={{ fontSize: 25, color: '#fff' }} />
@@ -58,6 +136,7 @@ class MainView extends React.Component {
                     </a>
                 </Dropdown>
             </Header>
+
             <Router>
                 <Layout>
                     <Sider width={200} style={{ background: '#fff' }}>
