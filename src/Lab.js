@@ -7,7 +7,7 @@ const formItemLayout = {
     labelCol: {span: 6},
     wrapperCol: {span: 15},
 };
-const minHeight = window.innerHeight + 20;
+const minHeight = window.innerHeight ;
 const modalWidth = 866;
 const {Header, Content, Sider} = Layout;
 
@@ -58,7 +58,7 @@ class Lab extends React.Component {
                             </Card>
                         </Col>
                         <Col span={6}>
-                            <Card style={{width: "200px", height: "180px", backgroundColor: "Orange"}}>
+                            <Card style={{width: "200px", height: "180px", backgroundColor: "Yellow"}}>
                                 <p>3号楼1号机房</p>
                                 <p>共100台机子</p>
 

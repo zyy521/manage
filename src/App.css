@@ -123,14 +123,14 @@ textarea.ant-input{
   margin-left: 68px;
 }
 
-.subject-tab{
+.header-tab{
   cursor: pointer;
   display: inline-block;
   padding: 10px 7px;
   margin: 0 12px;
 }
 
-.subject-tab-border{
+.header-tab-border{
   border-bottom: 2px solid #2dc3e8;
   color: #2dc3e8;
 }

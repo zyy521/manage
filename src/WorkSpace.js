@@ -73,6 +73,8 @@ class WorkSpace extends React.Component {
                 <Row gutter={18}>
                     <Col className="gutter-row" span={5}>
                         <div className="gutter-box">
+                            <a>删除</a>
+                            <p>便利贴</p>
                         </div>
                     </Col>
                     </Row>

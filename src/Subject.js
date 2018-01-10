@@ -7,7 +7,7 @@ const formItemLayout = {
     labelCol: {span: 6},
     wrapperCol: {span: 15},
 };
-const minHeight = window.innerHeight + 20;
+const minHeight = window.innerHeight ;
 const modalWidth = 866;
 const {Header, Content, Sider} = Layout;
 
@@ -55,7 +55,7 @@ class Subject extends React.Component {
     render() {
         return (
             <div className="gutter-example">
-                <div className="subject-tab subject-tab-border">
+                <div className="header-tab header-tab-border">
                     <a href="#" onClick={this.onSubjectTypeClick.bind(this, 1)}> 所有课程</a>
                     <a href="#" onClick={this.onSubjectTypeClick.bind(this, 2)}> 待审批课程</a>
                     <Button type="primary" style={{position: "relative", left: 888}}
@@ -94,9 +94,9 @@ class Subject extends React.Component {
                                 <p>这是简介</p>
                                 <p>这是简介</p>
                                 <p>这是简介</p>
-                            </Card>>
+                            </Card>
                         </Col>
-                    </Row>>
+                    </Row>
                 </div>
 
 

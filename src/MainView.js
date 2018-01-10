@@ -153,13 +153,14 @@ class MainView extends React.Component {
                             </Menu.Item>
 
                             <Menu.Item key="1">
-                                <Link to="/index/course"><Icon type="database" />
+                                <Link to="/index/subject"><Icon type="database" />
                                     课程管理</Link>
                             </Menu.Item>
 
                             <Menu.Item key="2">
+                                <Link to="/index/course">
                                 <Icon type="mail" />
-                                实验课管理
+                                实验课管理</Link>
                             </Menu.Item>
 
                             <Menu.Item key="3">
@@ -191,7 +192,8 @@ class MainView extends React.Component {
                     <Layout style={{ padding: '0 10px' }}>
                         <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: minHeight }}>
                             <Route exact path="/index" component={WorkSpace}/>
-                            <Route path="/index/course" component={Subject}/>
+                            <Route path="/index/subject" component={Subject}/>
+                            <Route path="/index/course" component={Course}/>
                             <Route path="/index/lab" component={Lab}/>
                         </Content>
                     </Layout>
