@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom'
 import { Layout, Menu, Icon,Dropdown,Modal,Row,Col,Form,Input} from 'antd';
 import WorkSpace from './WorkSpace';
+import Subject from './Subject';
+import Lab from './Lab'
 import Course from './Course';
 const { SubMenu } = Menu;
 const FormItem = Form.Item;
@@ -166,8 +168,8 @@ class MainView extends React.Component {
                             </Menu.Item>
 
                             <Menu.Item key="4">
-                                <Icon type="dashboard" />
-                                实验室管理
+                                <Link to="/index/lab"><Icon type="dashboard" />
+                                    实验室管理</Link>
                             </Menu.Item>
 
                             <Menu.Item key="5">
@@ -189,7 +191,8 @@ class MainView extends React.Component {
                     <Layout style={{ padding: '0 10px' }}>
                         <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: minHeight }}>
                             <Route exact path="/index" component={WorkSpace}/>
-                            <Route path="/index/course" component={Course}/>
+                            <Route path="/index/course" component={Subject}/>
+                            <Route path="/index/lab" component={Lab}/>
                         </Content>
                     </Layout>
                 </Layout>

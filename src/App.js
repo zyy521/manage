@@ -13,6 +13,7 @@ class App extends React.Component {
                 <div>
                     <Route path="/index" component={MainView}/>
                     <Route path="/login" component={LoginView}/>
+
                 </div>
             </Router>
         )
