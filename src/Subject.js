@@ -157,50 +157,24 @@ class Subject extends React.Component {
                 <Row>
                     <Col span={8}>
                         <img className="imgPhoto" src="https://www.baidu.com/img/bd_logo1.png" width="50" height="50"/>
-                        <FormItem label="姓名" {...formItemLayout}>
-                            <Input value={this.state.userName} disabled/>
+                        <h2>创建课程</h2>
+                        <FormItem label="课程名称" {...formItemLayout}>
+                            <TextArea value="C语言" disabled/>
                         </FormItem>
-                        <FormItem label="学号" {...formItemLayout}>
-                            <Input value={this.state.userNum} disabled/>
-                        </FormItem>
-                        <FormItem label="专业" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="班级" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="入学日期" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                    </Col>
-                    <Col span={8}>
-                        <FormItem label="籍贯" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="民族" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="出生日期" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="政治面貌" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="手机号码" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="邮箱" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="家庭住址" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                    </Col>
-                    <Col span={8}>
                         <FormItem label="简介" {...formItemLayout}>
                             <TextArea value="xxx" disabled/>
                         </FormItem>
                     </Col>
+                    <Col span={5}>
+                        <img className="imgPhoto" src="https://www.baidu.com/img/bd_logo1.png" width="50" height="50"/>
+                    </Col>
+
+                </Row>
+                <Row>
+                    <Button type="primary" htmlType="submit">确认创建</Button>
+                    <Button style={{ marginLeft: 8 }} onClick={this.handleCancel}>
+                        取消
+                    </Button>
                 </Row>
             </Modal>
         </Layout>

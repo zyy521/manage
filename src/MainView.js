@@ -8,6 +8,7 @@ import WorkSpace from './WorkSpace';
 import Subject from './Subject';
 import Lab from './Lab'
 import Course from './Course';
+import Message from './Message';
 const { SubMenu } = Menu;
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -164,8 +165,8 @@ class MainView extends React.Component {
                             </Menu.Item>
 
                             <Menu.Item key="3">
-                                <Icon type="mail" />
-                                消息管理
+                                <Link to="/index/message"><Icon type="mail" />
+                                消息管理</Link>
                             </Menu.Item>
 
                             <Menu.Item key="4">
@@ -195,6 +196,7 @@ class MainView extends React.Component {
                             <Route path="/index/subject" component={Subject}/>
                             <Route path="/index/course" component={Course}/>
                             <Route path="/index/lab" component={Lab}/>
+                            <Route path="/index/message" compmnent={Message}/>
                         </Content>
                     </Layout>
                 </Layout>
