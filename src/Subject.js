@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom'
 import {Button, Card, Col, Form, Input, Layout, Modal, Row} from 'antd';
 
 const FormItem = Form.Item;
@@ -13,28 +14,30 @@ const {Header, Content, Sider} = Layout;
 
 class Subject extends React.Component {
 
+
     constructor(props) {
         super(props);
         this.state = {
             logined: true,
-            dataVisible: false,
+            subjectVisible: false,
             userName: "陈瑶琪",
             userNum: "2014329620037",
-            subjectId: "0001",
-            subjectName: "C语言"
+            subjectId:"1234",
+            subjectName:"C语言",
+            subjectInfo:"XXXXXXX"
         }
     }
 
     createSubject = (e) => {
         this.setState({
-            dataVisible: true
+            subjectVisible: true
         })
     }
 
 
     handleCancel = (e) => {
         this.setState({
-            dataVisible: false,
+            subjectVisible: false,
         });
     }
 
@@ -53,6 +56,12 @@ class Subject extends React.Component {
     }
 
     render() {
+        if (!this.state.logined) {
+            return (
+                <Redirect to="/login"/>
+            )
+        }
+
         return (
             <div className="gutter-example">
                 <div className="header-tab header-tab-border">
@@ -143,10 +152,11 @@ class Subject extends React.Component {
         )
 
 
+        if(this.state.subjectVisible){
         return <Layout>
             <Modal
                 title="创建课程"
-                visible={this.state.dataVisible}
+                visible={this.state.subjectVisible}
                 onOk={this.handleOk}
                 className="CreateSubjectModel"
                 onCancel={this.handleCancel}
@@ -159,10 +169,10 @@ class Subject extends React.Component {
                         <img className="imgPhoto" src="https://www.baidu.com/img/bd_logo1.png" width="50" height="50"/>
                         <h2>创建课程</h2>
                         <FormItem label="课程名称" {...formItemLayout}>
-                            <TextArea value="C语言" disabled/>
+                            <Input value={this.state.subjectName} disabled/>
                         </FormItem>
                         <FormItem label="简介" {...formItemLayout}>
-                            <TextArea value="xxx" disabled/>
+                            <TextArea value={this.state.subjectInfo} disabled/>
                         </FormItem>
                     </Col>
                     <Col span={5}>
@@ -178,6 +188,7 @@ class Subject extends React.Component {
                 </Row>
             </Modal>
         </Layout>
+        }
     }
 }
 
