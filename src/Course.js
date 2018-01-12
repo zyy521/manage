@@ -1,86 +1,94 @@
 import React from 'react';
-import {Button, Card, Col, Form, Input, Layout, Modal, Row} from 'antd';
+import {Button, Card, Col, Form, Input, Layout, Modal, Row, Tabs} from 'antd';
+
+const TabPane = Tabs.TabPane,
+    FormItem = Form.Item;
 
 class Course extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            courseVisible: false
+        };
+    }
 
     createCourse = (e) => {
         this.setState({
             dataVisible: true
         })
-    }
+    };
 
     applySubject = (e) => {
         this.setState({
             dataVisible: true
         })
-    }
+    };
 
-    //切换我的实验课和所有课程
-    onCourseTypeClick(type) {
-        let obj = this;
+    // 点击课程
+    onCourseClick =()=> {
         this.setState({
-            courseType: type,
-            tableLoading: true
-        }, function () {
+            courseVisible: true,
+            courseTitle: "C语言",
+            courseInfo: "xxxxxxxxxxxxx"
+        })
+    };
 
-        });
-    }
+    // 渲染课程
+    renderCourse =()=> {
+        return <Row gutter={16}>
+            <Col span={6}>
+                <Card title="C语言" bordered={false} bordered={true} onClick={this.onCourseClick}>Card content</Card>
+            </Col>
+            <Col span={6}>
+                <Card title="汇编语言实" bordered={false} bordered={true}>Card content</Card>
+            </Col>
+            <Col span={6}>
+                <Card title="C语言" bordered={false} bordered={true}>Card content</Card>
+            </Col>
+        </Row>
+    };
 
     render() {
+        const operations = <div>
+            <Button type="primary" onClick={this.createCourse} style={{marginRight: "5px"}}>创建实验课</Button>
+            <Button type="default" onClick={this.applySubject}>申请课程</Button>
+        </div>,
+            items = this.renderCourse();
         return (
             <div className="gutter-example">
-                <div>
-                    <Row>
-                        <a className="header-tab header-tab-border" href="#"
-                           onClick={this.onCourseTypeClick.bind(this, 1)}>
-                            我的实验课</a>
-                        <a className="header-tab " href="#"
-                           onClick={this.onCourseTypeClick.bind(this, 2)}>
-                            所有课程</a>
-                        <Button type="primary" style={{position: "relative", left: "700px"}}
-                                onClick={this.createCourse}>创建实验课</Button>
-                        <Button type="default" style={{position: "relative", left: "720px"}}
-                            onClick={this.applySubject}>申请课程</Button>
-                    </Row>
-                </div>
-
-                <div>
-                    <a style={{left: "40px"}}>许建龙老师，你好！目前你一共有8门实验课。</a>
-                </div >
-                <div style={{background: '#ECECEC', padding: '30px',height: '500px' }}>
-                    <Row gutter={6}>
-                        <Col span={6}>
-                            <Card style={{
-                                width: "200px",
-                                height: "180px",
-                                position: "relative",
-                                left: "20px"
-                            }}>
-                                <p>C语言实验课</p>
-                                <p>共101位学生</p>
-                            </Card>
-                        </Col>
-                        <Col span={6}>
-                            <Card style={{width: "200px", height: "180px"}}>
-                                <p>C语言实验课</p>
-                                <p>共101位学生</p>
-
-                            </Card>
-                        </Col>
-                        <Col span={6}>
-                            <Card style={{width: "200px", height: "180px"}}>
-                                <p>C语言实验课</p>
-                                <p>共101位学生</p>
-                            </Card>
-                        </Col>
-                        <Col span={6}>
-                            <Card style={{width: "200px", height: "180px"}}>
-                                <p>C语言实验课</p>
-                                <p>共101位学生</p>
-                            </Card>
-                        </Col>
-                    </Row>
-                </div>
+                <Tabs defaultActiveKey="1" tabBarExtraContent={operations}>
+                    <TabPane tab="我的实验课" key="1">
+                        <div className="items-bar">
+                            许建龙老师，你好！目前你一共有8门实验课。
+                        </div>
+                        <div>
+                            {items}
+                        </div>
+                    </TabPane>
+                    <TabPane tab="所有课程" key="2">
+                        <div className="items-bar">
+                            目前平台上共开设了10门课程，请单击课程创建实验课。
+                        </div>
+                        <div>
+                            {items}
+                        </div>
+                    </TabPane>
+                </Tabs>
+                <Modal
+                    title="课程信息"
+                    visible={this.state.courseVisible}
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                    >
+                    <Form>
+                        <FormItem label="课程名称">
+                            <Input value={this.state.courseTitle} />
+                        </FormItem>
+                        <FormItem label="课程简介">
+                            <Input value={this.state.courseInfo} />
+                        </FormItem>
+                    </Form>
+                </Modal>
             </div>
         )
     }
