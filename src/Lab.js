@@ -7,24 +7,53 @@ const formItemLayout = {
     labelCol: {span: 6},
     wrapperCol: {span: 15},
 };
-const minHeight = window.innerHeight ;
-const modalWidth = 866;
+const minHeight = window.innerHeight;
+const modalWidth = 500;
 const {Header, Content, Sider} = Layout;
 
 
 class Lab extends React.Component {
 
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            logined: true,
+            labVisible: false,
+            userName: "陈瑶琪",
+            userNum: "2014329620037",
+            labId: "1234",
+            labName: "C语言",
+            labAddress: "3",
+            labClassroom: "304",
+            labTeacherId: "201701",
+            labPcAmount: "100",
+            labState: "0",
+            labInfo: "XXXXXXX",
+            labDatas: []
+        }
+    }
+
     addLab = (e) => {
         this.setState({
-            dataVisible: true
+            labVisible: true
         })
     }
 
 
     handleCancel = (e) => {
         this.setState({
-            dataVisible: false,
+            labVisible: false,
         });
+    }
+
+    sureAddLab() {
+
+    }
+
+    cancelAddLab() {
+
     }
 
 
@@ -35,8 +64,8 @@ class Lab extends React.Component {
                 <div>
                     <a>以下展示为</a>
                     <a>实验室的使用情况：</a>
-                    <Button type="primary" style={{position: "relative", left: 850}}
-                            onClick={this.addLab}>添加实验室</Button>
+                    <Button type="primary" className="text-right"
+                            onClick={this.addLab.bind(this)}>添加实验室</Button>
                     <br></br>
                 </div>
 
@@ -115,6 +144,55 @@ class Lab extends React.Component {
                     </Row>
                 </div>
 
+                <Modal
+                    title="添加实验室"
+                    visible={this.state.labVisible}
+                    onOk={this.handleOk}
+                    className="AddLabModel"
+                    onCancel={this.handleCancel}
+                    footer={false}
+                    width={modalWidth}
+                >
+
+                    <Row>
+                        <Col span={20}>
+                            <FormItem label="实验室名称" {...formItemLayout}>
+                                <Input value={this.state.labName}/>
+                            </FormItem>
+                            <FormItem label="实验室地点" {...formItemLayout} >
+                                <Col span={4}>
+                                <Input value={this.state.labAddress}/>
+                                </Col>
+                                <Col span={3}>
+                                号楼
+                                </Col>
+                                <Col span={4}>
+                                    <Input value={this.state.labClassroom}/>
+                                </Col>
+                                <Col span={4}>
+                                    室
+                                </Col>
+                            </FormItem>
+                            <FormItem label="管理员姓名" {...formItemLayout}>
+                                <Input value={this.state.labTeacherId}/>
+                            </FormItem>
+                            <FormItem label="机子数量" {...formItemLayout}>
+                                <Input value={this.state.labPcAmount}/>
+                            </FormItem>
+                            <FormItem label="状态" {...formItemLayout}>
+                                <Input value={this.state.labState}/>
+                            </FormItem>
+                            <FormItem label="简介" {...formItemLayout}>
+                                <TextArea style={{width: 345}} value={this.state.labInfo}/>
+                            </FormItem>
+                            <div style={{textAlign: "center"}}>
+                                <Button type="primary" onClick={this.sureAddLab.bind(this)}>确认添加</Button>
+                                <Button style={{marginLeft: 10}} onClick={this.cancelAddLab.bind(this)}>取消</Button>
+                            </div>
+                        </Col>
+                    </Row>
+                </Modal>
+
                 {/*实验室颜色框解释*/}
 
                 <br></br>
@@ -164,71 +242,6 @@ class Lab extends React.Component {
                 </div>
             </div>
         )
-
-
-        return
-        <Layout>
-            <Modal
-                title="添加实验室"
-                visible={this.state.dataVisible}
-                onOk={this.handleOk}
-                className="AddLabModel"
-                onCancel={this.handleCancel}
-                footer={false}
-                width={modalWidth}
-            >
-
-                <Row>
-                    <Col span={8}>
-                        <img className="imgPhoto" src="https://www.baidu.com/img/bd_logo1.png" width="50"
-                             height="50"/>
-                        <FormItem label="姓名" {...formItemLayout}>
-                            <Input value={this.state.userName} disabled/>
-                        </FormItem>
-                        <FormItem label="学号" {...formItemLayout}>
-                            <Input value={this.state.userNum} disabled/>
-                        </FormItem>
-                        <FormItem label="专业" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="班级" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="入学日期" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                    </Col>
-                    <Col span={8}>
-                        <FormItem label="籍贯" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="民族" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="出生日期" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="政治面貌" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="手机号码" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="邮箱" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                        <FormItem label="家庭住址" {...formItemLayout}>
-                            <Input value="xxx" disabled/>
-                        </FormItem>
-                    </Col>
-                    <Col span={8}>
-                        <FormItem label="简介" {...formItemLayout}>
-                            <TextArea value="xxx" disabled/>
-                        </FormItem>
-                    </Col>
-                </Row>
-            </Modal>
-        </Layout>
 
     }
 }
