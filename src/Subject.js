@@ -26,7 +26,8 @@ class Subject extends React.Component {
             subjectId: "1234",
             subjectName: "C语言",
             subjectInfo: "XXXXXXX",
-            subjectDatas: []
+            subjectDatas: [],
+            subjectDetailVisible: false
         }
     }
 
@@ -46,6 +47,26 @@ class Subject extends React.Component {
         this.setState({
             subjectVisible: false,
         });
+    }
+
+    handleSubjectOk = (e) => {
+        this.setState({
+            subjectDetailVisible: false,
+        });
+    }
+
+    handleSubjectCancel = (e) => {
+        this.setState({
+            subjectDetailVisible: false,
+        });
+    }
+
+    openSubjectDetail(record){
+        this.setState({
+            subjectDetailVisible: true,
+        });
+
+        console.log(record);
     }
 
     sureCreateSubject(){
@@ -121,7 +142,7 @@ class Subject extends React.Component {
                 title: '操作',
                 dataIndex: 'state',
                 key: 'state',
-                render: (text) => <a href="#">查看详情</a>,
+                render: (text,record) => <a href="#" onClick={this.openSubjectDetail.bind(this,record)}>查看详情</a>,
             }
         ];
 
@@ -166,7 +187,7 @@ class Subject extends React.Component {
                     </TabPane>
                     <TabPane tab="待审批课程" key="2">
                         <div>
-                            <Table columns={columns} dataSource={this.state.subjectDatas}/>
+                            <Table columns={columns} dataSource={this.state.subjectDatas} rowKey="key"/>
                         </div>
                     </TabPane>
                 </Tabs>
@@ -194,8 +215,37 @@ class Subject extends React.Component {
                             </div>
                         </Col>
                     </Row>
+                </Modal>
 
-
+                <Modal
+                    title="课程详情"
+                    visible={this.state.subjectDetailVisible}
+                    onOk={this.handleSubjectOk}
+                    className="detailModal"
+                    onCancel={this.handleSubjectCancel}
+                    footer={false}
+                    width={modalWidth}
+                >
+                    <Row>
+                        <Col span={24}>
+                            <FormItem label="课程名称" {...formItemLayout}>
+                                <Input value="" />
+                            </FormItem>
+                            <FormItem label="申请人" {...formItemLayout}>
+                                <Input value="" />
+                            </FormItem>
+                            <FormItem label="课程简介" {...formItemLayout}>
+                                <TextArea value=""  style={{width: 345,height: 50}}/>
+                            </FormItem>
+                            <FormItem label="申请理由" {...formItemLayout}>
+                                <TextArea value=""  style={{width: 345,height: 50}}/>
+                            </FormItem>
+                            <div style={{ textAlign: "center"}}>
+                                <Button type="primary" onClick={this.sureCreateSubject.bind(this)}>同意</Button>
+                                <Button  style={{marginLeft: 10}} onClick={this.cancelSubject.bind(this)}>拒绝</Button>
+                            </div>
+                        </Col>
+                    </Row>
                 </Modal>
 
             </div>
