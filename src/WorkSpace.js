@@ -1,17 +1,11 @@
 
 import React from 'react';
 import { Row,Col } from 'antd';
-
-
 class WorkSpace extends React.Component {
-
     render() {
         return (
-
             <div className="gutter-example">
                 <h2>待办事项</h2>
-                <hr></hr>
-                <br></br>
                 <Row gutter={16}>
                     <Col className="gutter-row" span={8}>
                         <div className="gutter-box">
@@ -66,10 +60,7 @@ class WorkSpace extends React.Component {
                     </Col>
                 </Row>
 
-                <br></br>
                 <h2>便利贴</h2>
-                <hr></hr>
-                <br></br>
                 <Row gutter={18}>
                     <Col className="gutter-row" span={5}>
                         <div className="gutter-box">
