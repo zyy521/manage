@@ -198,7 +198,7 @@ class MainView extends React.Component {
                             <Route path="/index/course" component={Course}/>
                             <Route path="/index/lab" component={Lab}/>
                             <Route path="/index/message" compmnent={Message}/>
-                            <Route path="/index/authority" compmnent={Authority}/>
+                            <Route path="/index/authority" component={Authority}/>
                         </Content>
                     </Layout>
                 </Layout>
