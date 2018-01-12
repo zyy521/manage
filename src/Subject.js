@@ -1,39 +1,40 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom'
-import {Button, Card, Col, Form, Input, Layout, Modal, Row} from 'antd';
+import {Button, Card,Row,Col,Form, Tabs, Table,Input,Modal} from 'antd';
 
+const TabPane = Tabs.TabPane;
 const FormItem = Form.Item;
-const {TextArea} = Input;
+const { TextArea } = Input;
 const formItemLayout = {
     labelCol: {span: 6},
     wrapperCol: {span: 15},
-};
-const minHeight = window.innerHeight ;
-const modalWidth = 866;
-const {Header, Content, Sider} = Layout;
+}
+
+const modalWidth = 600;
 
 class Subject extends React.Component {
 
 
     constructor(props) {
         super(props);
+
         this.state = {
             logined: true,
             subjectVisible: false,
             userName: "陈瑶琪",
             userNum: "2014329620037",
-            subjectId:"1234",
-            subjectName:"C语言",
-            subjectInfo:"XXXXXXX"
+            subjectId: "1234",
+            subjectName: "C语言",
+            subjectInfo: "XXXXXXX",
+            subjectDatas: []
         }
     }
 
-    createSubject = (e) => {
+    createSubject(){
         this.setState({
             subjectVisible: true
-        })
+        });
     }
-
 
     handleCancel = (e) => {
         this.setState({
@@ -41,19 +42,44 @@ class Subject extends React.Component {
         });
     }
 
-
-    //切换所有课程和待审批课程
-    onSubjectTypeClick(type) {
-        let obj = this;
+    handleOk = (e) => {
         this.setState({
-            subjectType: type,
-            tableLoading: true
-        }, function () {
-
+            subjectVisible: false,
         });
+    }
 
+    sureCreateSubject(){
 
     }
+
+    cancelSubject(){
+
+    }
+
+    componentDidMount() {
+        this.setState({
+            subjectDatas: [{
+                key: '1',
+                curseName: '张山',
+                sqr: 32,
+                sqrsj: '2017-12-11',
+                state: 0
+            }, {
+                key: '2',
+                curseName: '张山2',
+                sqr: "张三删",
+                sqrsj: '2017-12-11',
+                state: 0
+            }, {
+                key: '3',
+                curseName: '张山3',
+                sqr: "张三删",
+                sqrsj: '2017-12-11',
+                state: 0
+            }]
+        })
+    }
+
 
     render() {
         if (!this.state.logined) {
@@ -62,133 +88,118 @@ class Subject extends React.Component {
             )
         }
 
+        const columns = [
+            {
+                title: '序号',
+                dataIndex: 'key',
+                key: 'key',
+                width: "10%"
+            }, {
+                title: '课程名称',
+                dataIndex: 'curseName',
+                key: 'curseName',
+                width: "20%"
+            }, {
+                title: '申请人',
+                dataIndex: 'sqr',
+                key: 'sqr',
+                width: "20%"
+            }, {
+                title: '申请时间',
+                dataIndex: 'sqrsj',
+                key: 'sqrsj',
+                width: "20%"
+            },
+            {
+                title: '状态',
+                dataIndex: 'state',
+                key: 'state',
+                width: "20%",
+                render: (text) => (text == "0") ? "待审批" : "已审批"
+            },
+            {
+                title: '操作',
+                dataIndex: 'state',
+                key: 'state',
+                render: (text) => <a href="#">查看详情</a>,
+            }
+        ];
+
+        const operations = <Button type="primary" onClick={this.createSubject.bind(this)}>创建课程</Button>;
+
         return (
             <div className="gutter-example">
-                <div className="header-tab header-tab-border">
-                    <a href="#" onClick={this.onSubjectTypeClick.bind(this, 1)}> 所有课程</a>
-                    <a href="#" onClick={this.onSubjectTypeClick.bind(this, 2)}> 待审批课程</a>
-                    <Button type="primary" style={{position: "relative", left: 888}}
-                            onClick={this.createSubject}>创建课程</Button>
-                </div>
+                <Tabs defaultActiveKey="1" tabBarExtraContent={operations}>
+                    <TabPane tab="所有课程" key="1">
+                        <div>
+                            <Row gutter={8}>
+                                <Col span={6}>
+                                    <Card title="C语言" extra={<a href="#">修改</a>}
+                                          style={{width: 250, height: 220}}>
+                                        这是简介
+                                    </Card>
+                                </Col>
+                                <Col span={6}>
+                                    <Card title="汇编" extra={<a href="#">修改</a>} style={{width: 250, height: 220}}>
+                                        <p>这是简介</p>
+                                        <p>这是简介</p>
+                                        <p>这是简介</p>
+                                    </Card>
+                                </Col>
+                                <Col span={6}>
+                                    <Card title="汇编" extra={<a href="#">修改</a>} style={{width: 250, height: 220}}>
+                                        <p>这是简介</p>
+                                        <p>这是简介</p>
+                                        <p>这是简介</p>
+                                    </Card>
+                                </Col>
+                                <Col span={6}>
+                                    <Card title="汇编" extra={<a href="#">修改</a>}
+                                          style={{width: 250, height: 220}}>
+                                        <p>这是简介</p>
+                                        <p>这是简介</p>
+                                        <p>这是简介</p>
+                                    </Card>
+                                </Col>
+                            </Row>
+                        </div>
+                    </TabPane>
+                    <TabPane tab="待审批课程" key="2">
+                        <div>
+                            <Table columns={columns} dataSource={this.state.subjectDatas}/>
+                        </div>
+                    </TabPane>
+                </Tabs>
 
-
-                <div>
-                    <br></br>
-                    <Row gutter={8}>
-                        <Col span={6}>
-                            <Card title="C语言" extra={<a href="#">修改</a>}
-                                  style={{width: 250, height: 220, position: "relative", left: 20}}>
-                                这是简介
-                            </Card>
-                        </Col>
-                        <Col span={6}>
-                            <Card title="汇编" extra={<a href="#">修改</a>}
-                                  style={{width: 250, height: 220}}>
-                                <p>这是简介</p>
-                                <p>这是简介</p>
-                                <p>这是简介</p>
-                            </Card>>
-                        </Col>
-                        <Col span={6}>
-                            <Card title="汇编" extra={<a href="#">修改</a>}
-                                  style={{width: 250, height: 220}}>
-                                <p>这是简介</p>
-                                <p>这是简介</p>
-                                <p>这是简介</p>
-                            </Card>>
-                        </Col>
-                        <Col span={6}>
-                            <Card title="汇编" extra={<a href="#">修改</a>}
-                                  style={{width: 250, height: 220}}>
-                                <p>这是简介</p>
-                                <p>这是简介</p>
-                                <p>这是简介</p>
-                            </Card>
+                <Modal
+                    title="创建课程"
+                    visible={this.state.subjectVisible}
+                    onOk={this.handleOk}
+                    className="detailModal"
+                    onCancel={this.handleCancel}
+                    footer={false}
+                    width={modalWidth}
+                >
+                    <Row>
+                        <Col span={24}>
+                            <FormItem label="课程名称" {...formItemLayout}>
+                                <Input value="" />
+                            </FormItem>
+                            <FormItem label="简介" {...formItemLayout}>
+                                <TextArea value=""  style={{width: 345}}/>
+                            </FormItem>
+                            <div style={{ textAlign: "center"}}>
+                                <Button type="primary" onClick={this.sureCreateSubject.bind(this)}>确认创建</Button>
+                                <Button  style={{marginLeft: 10}} onClick={this.cancelSubject.bind(this)}>取消</Button>
+                            </div>
                         </Col>
                     </Row>
-                </div>
 
 
-                <div>
-                    <br></br>
-                    <Row gutter={8}>
-                        <Col span={6}>
-                            <Card title="C语言" extra={<a href="#">修改</a>}
-                                  style={{width: 250, height: 220, position: "relative", left: 20}}>
-                                这是简介
-                            </Card>
-                        </Col>
-                        <Col span={6}>
-                            <Card title="汇编" extra={<a href="#">修改</a>}
-                                  style={{width: 250, height: 220}}>
-                                <p>这是简介</p>
-                                <p>这是简介</p>
-                                <p>这是简介</p>
-                            </Card>>
-                        </Col>
-                        <Col span={6}>
-                            <Card title="汇编" extra={<a href="#">修改</a>}
-                                  style={{width: 250, height: 220}}>
-                                <p>这是简介</p>
-                                <p>这是简介</p>
-                                <p>这是简介</p>
-                            </Card>>
-                        </Col>
-                        <Col span={6}>
-                            <Card title="汇编" extra={<a href="#">修改</a>}
-                                  style={{width: 250, height: 220}}>
-                                <p>这是简介</p>
-                                <p>这是简介</p>
-                                <p>这是简介</p>
-                            </Card>>
-                        </Col>
-                    </Row>
-                </div>
-                <hr></hr>
-                <div>
-                    <p></p>
-                </div>
+                </Modal>
+
             </div>
         )
-
-
-        if(this.state.subjectVisible){
-        return <Layout>
-            <Modal
-                title="创建课程"
-                visible={this.state.subjectVisible}
-                onOk={this.handleOk}
-                className="CreateSubjectModel"
-                onCancel={this.handleCancel}
-                footer={false}
-                width={modalWidth}
-            >
-
-                <Row>
-                    <Col span={8}>
-                        <img className="imgPhoto" src="https://www.baidu.com/img/bd_logo1.png" width="50" height="50"/>
-                        <h2>创建课程</h2>
-                        <FormItem label="课程名称" {...formItemLayout}>
-                            <Input value={this.state.subjectName} disabled/>
-                        </FormItem>
-                        <FormItem label="简介" {...formItemLayout}>
-                            <TextArea value={this.state.subjectInfo} disabled/>
-                        </FormItem>
-                    </Col>
-                    <Col span={5}>
-                        <img className="imgPhoto" src="https://www.baidu.com/img/bd_logo1.png" width="50" height="50"/>
-                    </Col>
-
-                </Row>
-                <Row>
-                    <Button type="primary" htmlType="submit">确认创建</Button>
-                    <Button style={{ marginLeft: 8 }} onClick={this.handleCancel}>
-                        取消
-                    </Button>
-                </Row>
-            </Modal>
-        </Layout>
-        }
     }
 }
 
