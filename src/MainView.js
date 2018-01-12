@@ -9,6 +9,7 @@ import Subject from './Subject';
 import Lab from './Lab'
 import Course from './Course';
 import Message from './Message';
+import Authority from './Authority';
 const { SubMenu } = Menu;
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -180,8 +181,8 @@ class MainView extends React.Component {
                             </Menu.Item>
 
                             <Menu.Item key="6">
-                                <Icon type="mail" />
-                                权限设置
+                                <Link to="/index/authority"><Icon type="contacts" />
+                                    权限设置</Link>
                             </Menu.Item>
 
                             <Menu.Item key="7">
@@ -197,6 +198,7 @@ class MainView extends React.Component {
                             <Route path="/index/course" component={Course}/>
                             <Route path="/index/lab" component={Lab}/>
                             <Route path="/index/message" compmnent={Message}/>
+                            <Route path="/index/authority" compmnent={Authority}/>
                         </Content>
                     </Layout>
                 </Layout>
