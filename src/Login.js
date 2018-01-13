@@ -2,7 +2,8 @@
  * Created by czw on 2018/1/6.
  */
 import React, { Component } from 'react';
-import { Button,Input,Tabs} from 'antd';
+import axios from 'axios';
+import { Button,Input,Tabs,message} from 'antd';
 import {Redirect} from 'react-router-dom'
 
 const { TabPane } = Tabs;
@@ -13,7 +14,9 @@ class Login extends React.Component {
             pName: "请输入学号",
             pPswword: "请输入密码",
             loginType: "1",
-            logined: false
+            logined: false,
+            idNumber: "",
+            password: ""
         }
     }
 
@@ -37,8 +40,29 @@ class Login extends React.Component {
     }
 
     onLogin =()=> {
-        this.setState({
-            logined: true
+
+        let obj = this;
+        /*if(!this.state.idNumber){
+            message.warning('请输入用户名！')
+            return false;
+        }else if(!this.state.password){
+            message.warning('请输入密码！')
+            return false;
+        }*/
+
+        axios.post('/web/user/login',{
+            idNumber: '101010',
+            password: '123456',
+            type: "0"
+        }).then((res)=>{
+            if(res.data && res.data.success){
+                obj.setState({
+                    logined: true
+                })
+            }
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(err.status);
         })
     };
 
@@ -61,8 +85,8 @@ class Login extends React.Component {
                         <TabPane tab="教师" key="2"></TabPane>
                     </Tabs>
 
-                    <Input placeholder={this.state.pName}  style={{marginTop: 40,marginBottom: 10,width: 300}}/>
-                    <Input placeholder={this.state.pPswword} style={{marginTop: 10,marginBottom: 10,width: 300}}/>
+                    <Input placeholder={this.state.pName} type="text"  style={{marginTop: 40,marginBottom: 10,width: 300}}/>
+                    <Input placeholder={this.state.pPswword} type="password"  style={{marginTop: 10,marginBottom: 10,width: 300}}/>
                     <Button type="primary" className="Login-btn" onClick={this.onLogin}>登录</Button>
                 </div>
             </div>

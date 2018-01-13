@@ -161,12 +161,12 @@ class MainView extends React.Component {
 
                             <Menu.Item key="2">
                                 <Link to="/index/course">
-                                <Icon type="mail" />
+                                    <Icon type="appstore-o" />
                                 实验课管理</Link>
                             </Menu.Item>
 
                             <Menu.Item key="3">
-                                <Link to="/index/message"><Icon type="mail" />
+                                <Link to="/index/message"><Icon type="profile" />
                                 消息管理</Link>
                             </Menu.Item>
 
@@ -186,7 +186,7 @@ class MainView extends React.Component {
                             </Menu.Item>
 
                             <Menu.Item key="7">
-                                <Icon type="mail" />
+                                <Icon type="user" />
                                 个人中心
                             </Menu.Item>
                         </Menu>
@@ -197,7 +197,7 @@ class MainView extends React.Component {
                             <Route path="/index/subject" component={Subject}/>
                             <Route path="/index/course" component={Course}/>
                             <Route path="/index/lab" component={Lab}/>
-                            <Route path="/index/message" compmnent={Message}/>
+                            <Route path="/index/message" component={Message}/>
                             <Route path="/index/authority" component={Authority}/>
                         </Content>
                     </Layout>

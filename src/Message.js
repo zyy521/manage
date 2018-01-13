@@ -9,6 +9,7 @@ const formItemLayout = {
     wrapperCol: {span: 15},
 }
 const modalWidth = 600;
+
 class Message extends React.Component {
     constructor(props) {
         super(props);
