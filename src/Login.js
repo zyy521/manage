@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Button,Input,Tabs,message} from 'antd';
 import {Redirect} from 'react-router-dom'
-
 const { TabPane } = Tabs;
 class Login extends React.Component {
     constructor(props){
@@ -13,7 +12,7 @@ class Login extends React.Component {
         this.state = {
             pName: "请输入学号",
             pPswword: "请输入密码",
-            loginType: "1",
+            loginType: "2",
             logined: false,
             idNumber: "",
             password: ""
@@ -22,7 +21,7 @@ class Login extends React.Component {
 
     onChange(key){
         const selectType = key;
-        if(selectType === "1"){
+        if(selectType === "2"){
             this.setState({
                 pName: "请输入学号",
                 pPswword: "请输入密码",
@@ -42,29 +41,42 @@ class Login extends React.Component {
     onLogin =()=> {
 
         let obj = this;
-        /*if(!this.state.idNumber){
+        if(!this.state.idNumber){
             message.warning('请输入用户名！')
             return false;
         }else if(!this.state.password){
             message.warning('请输入密码！')
             return false;
-        }*/
+        }
 
         axios.post('/web/user/login',{
-            idNumber: '101010',
+            /*idNumber: '101010',
             password: '123456',
-            type: "0"
+            type: "0"*/
+            idNumber: obj.state.idNumber,
+            password: obj.state.password,
+            type: obj.state.loginType
         }).then((res)=>{
             if(res.data && res.data.success){
                 obj.setState({
                     logined: true
                 })
+            }else{
+                message.error(res.data.errorMessage)
             }
             console.log(res.data);
         }).catch((err)=>{
             console.log(err.status);
         })
     };
+
+    onChangeUserName = (e) =>{
+        this.setState({ idNumber: e.target.value });
+    }
+
+    onChangePassword = (e) =>{
+        this.setState({ password: e.target.value });
+    }
 
     render() {
         if (this.state.logined) {
@@ -81,12 +93,16 @@ class Login extends React.Component {
                     </div>
 
                     <Tabs defaultActiveKey={this.state.loginType} onChange={this.onChange.bind(this)} style={{ marginTop: 16 }}>
-                        <TabPane tab="学生" key="1"></TabPane>
-                        <TabPane tab="教师" key="2"></TabPane>
+                        <TabPane tab="学生" key="2"></TabPane>
+                        <TabPane tab="教师" key="1"></TabPane>
                     </Tabs>
 
-                    <Input placeholder={this.state.pName} type="text"  style={{marginTop: 40,marginBottom: 10,width: 300}}/>
-                    <Input placeholder={this.state.pPswword} type="password"  style={{marginTop: 10,marginBottom: 10,width: 300}}/>
+                    <Input placeholder={this.state.pName} type="text"  value={this.state.idNumber}
+                           onChange={this.onChangeUserName}
+                           style={{marginTop: 40,marginBottom: 10,width: 300}}/>
+                    <Input placeholder={this.state.pPswword} type="password" value={this.state.password}
+                           onChange={this.onChangePassword}
+                           style={{marginTop: 10,marginBottom: 10,width: 300}}/>
                     <Button type="primary" className="Login-btn" onClick={this.onLogin}>登录</Button>
                 </div>
             </div>

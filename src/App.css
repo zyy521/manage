@@ -137,3 +137,74 @@ textarea.ant-input{
 .items-bar {
   margin-bottom: 10px;
 }
+
+.labTop{
+  height: 41px;
+  border-bottom: 1px solid #dcdcdc;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.labCard-1,.labCard-2,.labCard-3{
+  width: 100%;
+  height: 150px;
+  position: relative;
+  border: 1px solid #dcdcdc;
+  background-color: #3db554;
+  color: #fff;
+}
+
+.labCard-1 h2,.labCard-2 h2,.labCard-3 h2{
+  color: #fff;
+}
+
+.labCard-2{
+  background-color: #dddfd4;
+}
+
+.labCard-3{
+  background-color: Orange;
+}
+
+.labSmallCard1{
+  width: 20px;
+  height: 18px;
+  position: relative;
+  background-color: Orange;
+  display: inline-block;
+  top: 4px;
+  right: 5px;
+}
+
+.labSmallCard2{
+  width: 20px;
+  height: 18px;
+  position: relative;
+  background-color: Gray;
+  display: inline-block;
+  top: 4px;
+  right: 5px;
+}
+
+.labSmallCard3{
+  width: 20px;
+  height: 18px;
+  position: relative;
+  background-color: lawngreen;
+  display: inline-block;
+  top: 4px;
+  right: 5px;
+}
+
+.labDetailVisible{
+  display: block;
+}
+
+.labDetailhidden{
+  display: none;
+}
+
+.ant-btn-primary,.ant-btn-primary:active{
+  background: #2DC3E8;
+  border-color: #2DC3E8;
+}
