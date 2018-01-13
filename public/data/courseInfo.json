@@ -1,0 +1,28 @@
+{
+  "head": {
+    "code": "00000000",
+    "msg": "成功",
+    "time": "2016-08-15 14:44:54"
+  },
+  "body": {
+    "courseName": "C语言实验",
+    "experimentList": [
+      {
+        "id": "1",
+        "index": 1,
+        "title": "实验一",
+        "state": 2
+      },{
+        "id": "2",
+        "index": 2,
+        "title": "实验二",
+        "state": 1
+      },{
+        "id": "3",
+        "index": 3,
+        "title": "实验三",
+        "state": 0
+      }
+    ]
+  }
+}

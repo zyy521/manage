@@ -8,6 +8,7 @@ import WorkSpace from './WorkSpace';
 import Subject from './Subject';
 import Lab from './Lab'
 import Course from './Course';
+import CourseInfo from './component/CourseInfo';
 import Message from './Message';
 import Authority from './Authority';
 const { SubMenu } = Menu;
@@ -195,10 +196,11 @@ class MainView extends React.Component {
                         <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: minHeight }}>
                             <Route exact path="/index" component={WorkSpace}/>
                             <Route path="/index/subject" component={Subject}/>
-                            <Route path="/index/course" component={Course}/>
+                            <Route exact path="/index/course" component={Course}/>
                             <Route path="/index/lab" component={Lab}/>
                             <Route path="/index/message" component={Message}/>
                             <Route path="/index/authority" component={Authority}/>
+                            <Route path="/index/course/:id" component={CourseInfo}/>
                         </Content>
                     </Layout>
                 </Layout>

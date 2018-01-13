@@ -137,3 +137,27 @@ textarea.ant-input{
 .items-bar {
   margin-bottom: 10px;
 }
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+.button10 {
+  margin-bottom: 10px;
+}
+.ant-btn-primary {
+  background: #2DC3E8;
+  border-color: #2DC3E8;
+}
+.ant-btn-primary :hover{
+  background: #1FC0E8;
+  border-color: #1FC0E8;
+}
+.upload-box {
+  margin-top: -8px;
+}
+.upload-box .ant-upload{
+  width: 100%;
+  margin-top: -2px;
+}
