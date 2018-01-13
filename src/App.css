@@ -134,3 +134,6 @@ textarea.ant-input{
   border-bottom: 2px solid #2dc3e8;
   color: #2dc3e8;
 }
+.items-bar {
+  margin-bottom: 10px;
+}
