@@ -64,7 +64,7 @@ class Lab extends React.Component {
                 <div>
                     <a>以下展示为</a>
                     <a>实验室的使用情况：</a>
-                    <Button type="primary" className="text-right"
+                    <Button  style={{float:"right"}} type="primary" className="text-right"
                             onClick={this.addLab.bind(this)}>添加实验室</Button>
                     <br></br>
                 </div>
@@ -197,6 +197,7 @@ class Lab extends React.Component {
 
                 <br></br>
                 <div>
+
                     <hr></hr>
                     <Row gutter={6}>
                         <Col span={1}>
