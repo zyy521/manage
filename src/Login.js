@@ -60,7 +60,8 @@ class Login extends React.Component {
             if(res.data && res.data.success){
                 obj.setState({
                     logined: true
-                })
+                });
+                sessionStorage.setItem("userId",res.data.entity.id);
             }else{
                 message.error(res.data.errorMessage)
             }

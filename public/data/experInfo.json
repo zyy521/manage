@@ -1,17 +1,13 @@
 {
-  "head": {
-    "code": "00000000",
-    "msg": "成功",
-    "time": "2016-08-15 14:44:54"
-  },
-  "body": {
-    "courseName": "C语言",
-    "experName": "实验一",
-    "day": 1,
-    "classStart": 1,
-    "classEnd": 2,
-    "classroomId": 1,
-    "exportTime": "2018-01-13",
-    "experDataLink": "http://pan.baidu.123456"
-  }
+  "day": 1,
+  "classBegin": 1,
+  "modifyDate": null,
+  "classEnd": 2,
+  "classroomId": 2,
+  "epId": 1,
+  "uploadEndTime": "2018-02-01",
+  "id": 3,
+  "epFileUrl": "http://115.159.192.69:9000/class/record/c语言测试/1/开发内容.doc",
+  "epName": "c语言测试",
+  "createDate": null
 }

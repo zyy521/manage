@@ -232,3 +232,6 @@ textarea.ant-input{
   width: 100%;
   margin-top: -2px;
 }
+.hide-ok-btn .ant-btn-primary {
+  display: none;
+}
