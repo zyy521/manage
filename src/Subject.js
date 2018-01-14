@@ -14,7 +14,6 @@ const modalWidth = 600;
 
 class Subject extends React.Component {
 
-
     constructor(props) {
         super(props);
 

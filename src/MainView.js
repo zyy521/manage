@@ -8,6 +8,7 @@ import WorkSpace from './WorkSpace';
 import Subject from './Subject';
 import Lab from './Lab'
 import Course from './Course';
+import CourseInfo from './component/CourseInfo';
 import Message from './Message';
 import Authority from './Authority';
 const { SubMenu } = Menu;
@@ -161,12 +162,12 @@ class MainView extends React.Component {
 
                             <Menu.Item key="2">
                                 <Link to="/index/course">
-                                <Icon type="mail" />
+                                    <Icon type="appstore-o" />
                                 实验课管理</Link>
                             </Menu.Item>
 
                             <Menu.Item key="3">
-                                <Link to="/index/message"><Icon type="mail" />
+                                <Link to="/index/message"><Icon type="profile" />
                                 消息管理</Link>
                             </Menu.Item>
 
@@ -186,7 +187,7 @@ class MainView extends React.Component {
                             </Menu.Item>
 
                             <Menu.Item key="7">
-                                <Icon type="mail" />
+                                <Icon type="user" />
                                 个人中心
                             </Menu.Item>
                         </Menu>
@@ -195,10 +196,11 @@ class MainView extends React.Component {
                         <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: minHeight }}>
                             <Route exact path="/index" component={WorkSpace}/>
                             <Route path="/index/subject" component={Subject}/>
-                            <Route path="/index/course" component={Course}/>
+                            <Route exact path="/index/course" component={Course}/>
                             <Route path="/index/lab" component={Lab}/>
-                            <Route path="/index/message" compmnent={Message}/>
+                            <Route path="/index/message" component={Message}/>
                             <Route path="/index/authority" component={Authority}/>
+                            <Route path="/index/course/:id" component={CourseInfo}/>
                         </Content>
                     </Layout>
                 </Layout>

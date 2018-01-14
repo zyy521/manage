@@ -1,0 +1,17 @@
+{
+  "head": {
+    "code": "00000000",
+    "msg": "成功",
+    "time": "2016-08-15 14:44:54"
+  },
+  "body": {
+    "courseName": "C语言",
+    "experName": "实验一",
+    "day": 1,
+    "classStart": 1,
+    "classEnd": 2,
+    "classroomId": 1,
+    "exportTime": "2018-01-13",
+    "experDataLink": "http://pan.baidu.123456"
+  }
+}
