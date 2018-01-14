@@ -1,6 +1,8 @@
 import React from 'react';
 import { Redirect} from 'react-router-dom'
-import { Modal,Row,Col,Form,Input,Tabs,Table,Button} from 'antd';
+import axios from 'axios';
+import moment from 'moment';
+import { Modal,Row,Col,Form,Input,Tabs,Table,Button,message} from 'antd';
 const TabPane = Tabs.TabPane;
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -41,9 +43,29 @@ class Message extends React.Component {
     }
 
     sureAnnounce = (e) => {
-        this.setState({
-            announcementVisible: false,
-        });
+        if(!this.state.title){
+            message.warning("请输入公告标题")
+            return false;
+        }else if(!this.state.content){
+            message.warning("请输入公告内容")
+            return false;
+        }
+
+        const url = "/web/notice/send";
+        let obj = this;
+        axios.post(url + '?title=' + this.state.title +"&content=" + this.state.content).then((res)=>{
+            if(res.data && res.data.success){
+                message.success("公告发布成功！")
+                obj.fetchNotice();
+                obj.setState({
+                    announcementVisible: false,
+                });
+            }else{
+                message.error(res.data.errorMessage)
+            }
+        }).catch((err)=>{
+            console.log(err.status);
+        })
     }
 
     cancelAnnounce = (e) => {
@@ -54,49 +76,65 @@ class Message extends React.Component {
 
 
     componentDidMount() {
-        this.setState({
-            announcementDatas: [{
-                key: '1',
-                msgName: '公告1-1-1',
-                fbr: 32,
-                fbsj: '2017-12-11',
-                state: 0
-            }, {
-                key: '2',
-                msgName: '公告2-1-1',
-                fbr: 32,
-                fbsj: '2017-12-11',
-                state: 0
-            }, {
-                key: '3',
-                msgName: '公告3-1-1',
-                fbr: 32,
-                fbsj: '2017-12-11',
-                state: 0
-            }],
+        this.fetchMsg();
+    }
 
-            messageDatas: [{
-                key: '1',
-                msgName: '消息1-1-1',
-                fbr: 32,
-                fbsj: '2017-12-11',
-                state: 0
-            }, {
-                key: '2',
-                msgName: '消息2-1-1',
-                fbr: 32,
-                fbsj: '2017-12-11',
-                state: 0
-            }, {
-                key: '3',
-                msgName: '消息3-1-1',
-                fbr: 32,
-                fbsj: '2017-12-11',
-                state: 0
-            }]
+    fetchMsg(){
+        const url = "/web/msg/list";
+        let obj = this;
+        axios.get(url+"?state=1&page=0").then((res)=>{
+            if(res.data && res.data.success){
+                let datas = [];
+
+                res.data.list.map(function(item, index){
+                    item.key = index + 1;
+                    item.createdDate = moment(item.createdDate).format("YYYY-MM-DD HH:MM:SS")
+                    datas.push(item);
+                })
+                obj.setState({
+                    messageDatas: datas
+                });
+            }else{
+                message.error(res.data.errorMessage)
+            }
+        }).catch((err)=>{
+            console.log(err.status);
         })
     }
 
+    fetchNotice(){
+        const url = "/web/notice/list";
+        let obj = this;
+        axios.get(url+"?page=0").then((res)=>{
+            if(res.data && res.data.success){
+                let datas = [];
+                res.data.list.map(function(item, index){
+                    item.key = index + 1;
+                    item.createTime = moment(item.createTime).format("YYYY-MM-DD HH:MM:SS")
+                    datas.push(item);
+                })
+                obj.setState({
+                    announcementDatas: datas
+                });
+            }else{
+                message.error(res.data.errorMessage)
+            }
+        }).catch((err)=>{
+            console.log(err.status);
+        })
+    }
+
+    callback = (key) =>{
+        (key === "1") ? this.fetchMsg() : this.fetchNotice();
+    }
+
+    changeTitle = (e) => {
+        this.setState({ title: e.target.value });
+    }
+
+    changeContent = (e) => {
+        this.setState({ content: e.target.value });
+    }
 
     render() {
         if (!this.state.logined) {
@@ -110,29 +148,28 @@ class Message extends React.Component {
                 title: '序号',
                 dataIndex: 'key',
                 key: 'key',
-                width: "10%"
+                width: "20%"
             }, {
                 title: '消息标题',
-                dataIndex: 'msgName',
-                key: 'msgName',
+                dataIndex: 'title',
+                key: 'title',
                 width: "20%"
             }, {
                 title: '发布人',
-                dataIndex: 'fbr',
-                key: 'fbr',
+                dataIndex: 'sendUserName',
+                key: 'sendUserName',
                 width: "20%"
             },{
                 title: '状态',
-                dataIndex: 'state',
-                key: 'state',
+                dataIndex: 'hasRead',
+                key: 'hasRead',
                 width: "20%",
-                render: (text) => (text == "0") ? "未发送" : "待发送"
+                render: (text) => (text === 1) ? "已读" : "未读"
             },
             {
                 title: '发布时间',
-                dataIndex: 'fbsj',
-                key: 'fbsj',
-                width: "20%"
+                dataIndex: 'createdDate',
+                key: 'createdDate',
             }
         ];
 
@@ -142,37 +179,34 @@ class Message extends React.Component {
                 title: '序号',
                 dataIndex: 'key',
                 key: 'key',
-                width: "10%"
+                width: "20%"
             }, {
                 title: '公告标题',
-                dataIndex: 'msgName',
-                key: 'msgName',
+                dataIndex: 'title',
+                key: 'title',
+                width: "20%"
+            },  {
+                title: '公告内容',
+                dataIndex: 'content',
+                key: 'content',
                 width: "20%"
             }, {
                 title: '发布人',
-                dataIndex: 'fbr',
-                key: 'fbr',
+                dataIndex: 'createUserName',
+                key: 'createUserName',
                 width: "20%"
-            },{
-                title: '状态',
-                dataIndex: 'state',
-                key: 'state',
-                width: "20%",
-                render: (text) => (text == "0") ? "未发送" : "待发送"
             },
             {
                 title: '发布时间',
-                dataIndex: 'fbsj',
-                key: 'fbsj',
-                width: "20%"
+                dataIndex: 'createTime',
+                key: 'createTime',
             }
         ];
 
         const operations = <Button type="primary" onClick={this.announcements.bind(this)}>发布公告</Button>;
-
         return (
             <div className="gutter-example">
-                <Tabs defaultActiveKey="1" tabBarExtraContent={operations}>
+                <Tabs defaultActiveKey="1" tabBarExtraContent={operations} onChange={this.callback}>
                     <TabPane tab="消息列表" key="1">
                         <div>
                             <Table columns={columns} dataSource={this.state.messageDatas} rowKey="key"/>
@@ -197,10 +231,10 @@ class Message extends React.Component {
                     <Row>
                         <Col span={24}>
                             <FormItem label="公告标题" {...formItemLayout}>
-                                <Input value="" />
+                                <Input value={this.state.title} onChange={this.changeTitle}/>
                             </FormItem>
                             <FormItem label="公告内容" {...formItemLayout}>
-                                <TextArea value=""  style={{width: 345}}/>
+                                <TextArea value={this.state.content} onChange={this.changeContent} style={{width: 345}}/>
                             </FormItem>
                             <div style={{ textAlign: "center"}}>
                                 <Button type="primary" onClick={this.sureAnnounce.bind(this)}>发布</Button>

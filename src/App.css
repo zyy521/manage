@@ -158,6 +158,11 @@ textarea.ant-input{
   color: #fff;
 }
 
+.labCard-1 a,.labCard-2 a{
+  text-decoration: underline;
+  font-weight: bold;
+  color: #2DC3E8;
+}
 .labCard-2{
   background-color: #dddfd4;
 }
@@ -180,7 +185,7 @@ textarea.ant-input{
   width: 20px;
   height: 18px;
   position: relative;
-  background-color: Gray;
+  background-color: #dddfd4;
   display: inline-block;
   top: 4px;
   right: 5px;
@@ -190,7 +195,7 @@ textarea.ant-input{
   width: 20px;
   height: 18px;
   position: relative;
-  background-color: lawngreen;
+  background-color: #3db554;
   display: inline-block;
   top: 4px;
   right: 5px;

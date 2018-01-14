@@ -14,8 +14,8 @@ class Login extends React.Component {
             pPswword: "请输入密码",
             loginType: "2",
             logined: false,
-            idNumber: "",
-            password: ""
+            idNumber: "101026",
+            password: "123456"
         }
     }
 
@@ -50,9 +50,6 @@ class Login extends React.Component {
         }
 
         axios.post('/web/user/login',{
-            /*idNumber: '101010',
-            password: '123456',
-            type: "0"*/
             idNumber: obj.state.idNumber,
             password: obj.state.password,
             type: obj.state.loginType
@@ -103,6 +100,7 @@ class Login extends React.Component {
                            style={{marginTop: 40,marginBottom: 10,width: 300}}/>
                     <Input placeholder={this.state.pPswword} type="password" value={this.state.password}
                            onChange={this.onChangePassword}
+                           onPressEnter={this.onLogin}
                            style={{marginTop: 10,marginBottom: 10,width: 300}}/>
                     <Button type="primary" className="Login-btn" onClick={this.onLogin}>登录</Button>
                 </div>
