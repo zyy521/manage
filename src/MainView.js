@@ -13,6 +13,7 @@ import CourseInfo from './component/CourseInfo';
 import ReadHomework from './component/ReadHomework';
 import Message from './Message';
 import Authority from './Authority';
+import Video from './Video';
 const { SubMenu } = Menu;
 const FormItem = Form.Item;
 const { TextArea } = Input;
@@ -182,8 +183,8 @@ class MainView extends React.Component {
                             </Menu.Item>
 
                             <Menu.Item key="5">
-                                <Icon type="video-camera" />
-                                教学文档/视频
+                                <Link to="/index/video"><Icon type="video-camera" />
+                                    教学文档/视频</Link>
                             </Menu.Item>
 
                             <Menu.Item key="6" className={loginInfo.type === 2 ? "labDetailhidden": "labDetailVisible"}>
@@ -205,6 +206,7 @@ class MainView extends React.Component {
                             <Route path="/index/lab" component={Lab}/>
                             <Route path="/index/message" component={Message}/>
                             <Route path="/index/authority" component={Authority}/>
+                            <Route path="/index/video" component={Video}/>
                             <Route path="/index/course/:id" component={CourseInfo}/>
                             <Route path="/index/readHomework/:id" component={ReadHomework}/>
                         </Content>

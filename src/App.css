@@ -205,6 +205,10 @@ textarea.ant-input{
   display: block;
 }
 
+.labDetailShow{
+  display: inline-block;
+}
+
 .labDetailhidden{
   display: none;
 }
