@@ -17,6 +17,7 @@ class Course extends React.Component {
             myCourseList: [],
             allCourseList: []
         };
+
     }
 
     componentDidMount () {

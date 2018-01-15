@@ -62,10 +62,14 @@ class CourseInfo extends React.Component {
                 epId: id
             }
         }).then((res)=>{
-            const result = res.data,
-                newState = {
-                    experimentList: result.list
-                };
+            let result = res.data,
+                newState = {};
+            let list = result.list.map((item,index) => {
+                let newItem = item;
+                newItem.index = index+1;
+                return newItem;
+            });
+            newState.experimentList = list;
             axios.get('/web/ep',{
                 params: {
                     id: id

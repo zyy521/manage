@@ -9,6 +9,7 @@ import WorkSpace from './WorkSpace';
 import Subject from './Subject';
 import Lab from './Lab'
 import Course from './Course';
+import CourseStu from './CourseStu';
 import CourseInfo from './component/CourseInfo';
 import ReadHomework from './component/ReadHomework';
 import Message from './Message';
@@ -169,7 +170,7 @@ class MainView extends React.Component {
                             <Menu.Item key="2">
                                 <Link to="/index/course">
                                     <Icon type="appstore-o" />
-                                实验课管理</Link>
+                                    {loginInfo.type === 2 ? "查看课程" : "实验课管理"}</Link>
                             </Menu.Item>
 
                             <Menu.Item key="3">
@@ -202,7 +203,9 @@ class MainView extends React.Component {
                         <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: minHeight }}>
                             <Route exact path="/index" component={WorkSpace}/>
                             <Route path="/index/subject" component={Subject}/>
-                            <Route exact path="/index/course" component={Course}/>
+                            {loginInfo.type === 2 ?
+                                <Route exact path="/index/course" component={CourseStu}/> :
+                                <Route exact path="/index/course" component={Course}/>}
                             <Route path="/index/lab" component={Lab}/>
                             <Route path="/index/message" component={Message}/>
                             <Route path="/index/authority" component={Authority}/>
