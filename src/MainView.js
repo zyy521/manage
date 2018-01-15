@@ -10,6 +10,7 @@ import Subject from './Subject';
 import Lab from './Lab'
 import Course from './Course';
 import CourseInfo from './component/CourseInfo';
+import ReadHomework from './component/ReadHomework';
 import Message from './Message';
 import Authority from './Authority';
 const { SubMenu } = Menu;
@@ -205,6 +206,7 @@ class MainView extends React.Component {
                             <Route path="/index/message" component={Message}/>
                             <Route path="/index/authority" component={Authority}/>
                             <Route path="/index/course/:id" component={CourseInfo}/>
+                            <Route path="/index/readHomework/:id" component={ReadHomework}/>
                         </Content>
                     </Layout>
                 </Layout>

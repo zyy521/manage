@@ -238,7 +238,6 @@ textarea.ant-input{
   margin-top: -2px;
 }
 
-
 .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
   text-align: center;
 }
@@ -260,11 +259,14 @@ textarea.ant-input{
   padding: 0;
 }
 
-.worksItems{
+.worksItems {
   position: relative;
   padding: 3px 0px 3px 30px;
   background: #fafafa;
   color: #333;
   font-size: 14px;
   word-wrap: break-word;
+}
+.hide-ok-btn .ant-btn-primary {
+  display: none;
 }

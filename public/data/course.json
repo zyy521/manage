@@ -1,11 +1,22 @@
 {
-  "head": {
-    "code": "00000000",
-    "msg": "成功",
-    "time": "2016-08-15 14:44:54"
-  },
-  "body": [
-    {"id":1, "courseName": "C语言实验", "stuNum": "100", "courseInfo": "C语言实验C语言实验C语言实验C语言实验C语言实验C语言实验C语言实验C语言实验"},
-    {"id":2, "courseName": "汇编语言实验", "stuNum": "101", "courseInfo": "汇编语言实验汇编语言实验汇编语言实验汇编语言实验汇编语言实验汇编语言实验"}
-  ]
+  "errorContext": null,
+  "success": true,
+  "errorMessage": null,
+  "list": [{
+    "classBegin": 3,
+    "endPeriod": "2018-12-19",
+    "modifyDate": null,
+    "classEnd": 4,
+    "classroomId": 1,
+    "briefIntroduction": "简单的入门",
+    "tIds": "4,3,14,9",
+    "beginPeriod": "2017-10-19",
+    "joinEndTime": "2018-01-01",
+    "teachers": null,
+    "name": "GO语言",
+    "id": 6,
+    "courseId": 1,
+    "day": 2,
+    "createDate": "20180105010721"
+  }]
 }
