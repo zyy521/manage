@@ -237,3 +237,34 @@ textarea.ant-input{
   width: 100%;
   margin-top: -2px;
 }
+
+
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td{
+  text-align: center;
+}
+
+.labLists{
+  position: relative;
+  padding: 15px 20px 15px 37px;
+  background: #fafafa;
+  color: #333;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
+.labLists:hover{
+  color: #2dc3e8;
+}
+
+.workSpaceLists .ant-card-body{
+  padding: 0;
+}
+
+.worksItems{
+  position: relative;
+  padding: 3px 0px 3px 30px;
+  background: #fafafa;
+  color: #333;
+  font-size: 14px;
+  word-wrap: break-word;
+}

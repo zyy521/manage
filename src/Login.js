@@ -17,6 +17,8 @@ class Login extends React.Component {
             idNumber: "101026",
             password: "123456"
         }
+
+        window.loginInfo = [];
     }
 
     onChange(key){
@@ -55,6 +57,7 @@ class Login extends React.Component {
             type: obj.state.loginType
         }).then((res)=>{
             if(res.data && res.data.success){
+                sessionStorage.setItem("loginInfo", JSON.stringify(res.data.entity));
                 obj.setState({
                     logined: true
                 })
