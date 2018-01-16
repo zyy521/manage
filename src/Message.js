@@ -21,7 +21,8 @@ class Message extends React.Component {
             announcementVisible: false,
             announcementDatas: [],
             messageDatas: [],
-            selectType: "0"
+            selectType: "0",
+            messageVisible: false
         }
     }
 
@@ -34,6 +35,7 @@ class Message extends React.Component {
     handleCancel = (e) => {
         this.setState({
             announcementVisible: false,
+            messageVisible: false
         });
     }
 
@@ -147,6 +149,32 @@ class Message extends React.Component {
         this.setState({ content: e.target.value });
     }
 
+    openMessageDetail(record){
+        this.setState({
+            messageVisible: true ,
+
+        });
+        const url = "/web/msg/detail";
+        let obj = this;
+        axios.get(url+"?id=" + record.id).then((res)=>{
+            if(res.data && res.data.success){
+                let content = res.data.entity;
+                obj.setState({
+                    msgTitle: content.title,
+                    msgContent: content.content,
+                    sendUserName: record.sendUserName,
+                    createdDate: moment(record.createdDate).format("YYYY-MM-DD HH:MM:SS"),
+                });
+                obj.fetchMsg();
+            }else{
+                message.error(res.data.errorMessage)
+            }
+        }).catch((err)=>{
+            console.log(err.status);
+        })
+
+    }
+
     render() {
         if (!this.state.logined) {
             return (
@@ -220,7 +248,7 @@ class Message extends React.Component {
                 <Tabs defaultActiveKey="1" tabBarExtraContent={operations} onChange={this.callback}>
                     <TabPane tab="消息列表" key="1">
                         <div>
-                            <Table columns={columns} dataSource={this.state.messageDatas} rowKey="key"/>
+                            <Table columns={columns} dataSource={this.state.messageDatas} rowKey="key" onRowClick={this.openMessageDetail.bind(this)}/>
                         </div>
                     </TabPane>
                     <TabPane tab="公告列表" key="2">
@@ -254,6 +282,35 @@ class Message extends React.Component {
                         </Col>
                     </Row>
                 </Modal>
+
+                <Modal
+                    title="消息详情"
+                    visible={this.state.messageVisible}
+                    className="detailModal"
+                    onCancel={this.handleCancel}
+                    footer={false}
+                    width={modalWidth}
+                >
+                    <Row>
+                        <Col span={24}>
+                            <FormItem label="消息标题" {...formItemLayout}>
+                                <Input value={this.state.msgTitle} disabled/>
+                            </FormItem>
+                            <FormItem label="消息内容" {...formItemLayout}>
+                                <TextArea value={this.state.msgContent} disabled style={{width: 345}}/>
+                            </FormItem>
+                            <FormItem label="发布人" {...formItemLayout}>
+                                <Input value={this.state.sendUserName} disabled/>
+                            </FormItem>
+
+                            <FormItem label="发布时间" {...formItemLayout}>
+                                <Input value={this.state.createdDate} disabled/>
+                            </FormItem>
+                        </Col>
+                    </Row>
+                </Modal>
+
+
             </div>
         )
     }
