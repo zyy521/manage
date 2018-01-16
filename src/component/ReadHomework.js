@@ -39,7 +39,7 @@ class CourseInfo extends React.Component {
             width: 160,
             render: (text,record) => {
                 return (
-                    <InputNumber min={0} max={100} defaultValue={text} onChange={this.onChangeScore.bind(this,record.studentId)} onBlur={this.onEdit.bind(this,record.studentId)} />
+                    <InputNumber min={0} max={100} defaultValue={text} onChange={this.onChangeScore.bind(this,record.id)} onBlur={this.onEdit.bind(this,record.id)} />
                 )
             }
         }, {
@@ -48,7 +48,7 @@ class CourseInfo extends React.Component {
             width: 200,
             render: (text,record) => {
                 return (
-                    <Input defaultValue={text} onInput={this.onChangeComment.bind(this,record.studentId)} onBlur={this.onEdit.bind(this,record.studentId)} />
+                    <Input defaultValue={text} onInput={this.onChangeComment.bind(this,record.id)} onBlur={this.onEdit.bind(this,record.id)} />
                 )
             }
         }] : [{
@@ -138,7 +138,7 @@ class CourseInfo extends React.Component {
 
     onChangeScore =(id, value)=> {
         for(let i = 0,len = this.state.homeworkList.length;i < len;i ++) {
-            if (this.state.homeworkList[i].studentId === id) {
+            if (this.state.homeworkList[i].id === id) {
                 this.state.homeworkList[i].score = value ? value : 0;
                 break;
             }
@@ -147,7 +147,7 @@ class CourseInfo extends React.Component {
     onChangeComment =(id, e)=> {
         console.log(e.target.value);
         for(let i = 0,len = this.state.homeworkList.length;i < len;i ++) {
-            if (this.state.homeworkList[i].studentId === id) {
+            if (this.state.homeworkList[i].id === id) {
                 this.state.homeworkList[i].comment = e.target.value ? e.target.value : "";
                 break;
             }
@@ -158,7 +158,7 @@ class CourseInfo extends React.Component {
     onEdit =(id)=> {
         let praram = {};
         for (let i = 0,len = this.state.homeworkList.length;i < len;i ++) {
-            if (this.state.homeworkList[i].studentId === id) {
+            if (this.state.homeworkList[i].id === id) {
                 praram = this.state.homeworkList[i];
                 break;
             }
