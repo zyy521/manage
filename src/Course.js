@@ -122,6 +122,7 @@ class Course extends React.Component {
     };
 
     render() {
+        const loginInfo = JSON.parse(sessionStorage.getItem("loginInfo"));
         const operations = <div>
             <Button type="primary" onClick={this.createCourse} style={{marginRight: "5px"}}>创建实验课</Button>
             <Button type="default" onClick={this.applySubject}>申请课程</Button>
@@ -139,7 +140,7 @@ class Course extends React.Component {
                 <Tabs defaultActiveKey="1" tabBarExtraContent={operations}>
                     <TabPane tab="我的实验课" key="1">
                         <div className="items-bar">
-                            许建龙老师，你好！目前你一共有{this.state.myCourseList.length}门实验课。
+                            <span style={{color: "#2DC3E8"}}>{loginInfo.name}</span>老师，你好！目前你一共有{this.state.myCourseList.length}门实验课。
                         </div>
                         <div>
                             {myCourseList}

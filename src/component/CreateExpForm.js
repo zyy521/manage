@@ -6,10 +6,10 @@ import moment from "moment";
 import {Button, Form, Card, Col, Input, Layout, Modal, Row, Table, DatePicker,Select,message} from 'antd';
 import axios from 'axios';
 import listUtils from '../utils/listUtils';
-
 const FormItem = Form.Item,
     { TextArea } = Input,
     Option = Select.Option;
+
 class CreateExpForm extends React.Component {
     constructor(props){
         super(props);
@@ -135,7 +135,7 @@ class CreateExpForm extends React.Component {
                                         {getFieldDecorator('beginPeriod', {
                                             rules: [{ type: 'object', required: true, message: '请选择课程安排时间!' }]
                                         })(
-                                            <DatePicker format="YYYY-MM-DD" />
+                                            <DatePicker format="YYYY-MM-DD" placeholder="请选择日期"/>
                                         )}
                                     </FormItem>
                                 </Col>
@@ -147,7 +147,7 @@ class CreateExpForm extends React.Component {
                                         {getFieldDecorator('endPeriod', {
                                             rules: [{ type: 'object', required: true, message: '请选择课程安排时间!' }]
                                         })(
-                                            <DatePicker format="YYYY-MM-DD" />
+                                            <DatePicker format="YYYY-MM-DD" placeholder="请选择日期"/>
                                         )}
                                     </FormItem>
                                 </Col>
