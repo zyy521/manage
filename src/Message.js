@@ -83,7 +83,7 @@ class Message extends React.Component {
     fetchMsg(){
         const url = "/web/msg/list";
         let obj = this;
-        axios.get(url+"?state=1&page=0").then((res)=>{
+        axios.get(url+"?state=2&page=0").then((res)=>{
             if(res.data && res.data.success){
                 let datas = [];
 
