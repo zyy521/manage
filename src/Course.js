@@ -148,7 +148,7 @@ class Course extends React.Component {
                     </TabPane>
                     <TabPane tab="所有课程" key="2">
                         <div className="items-bar">
-                            目前平台上共开设了{this.state.allCourseList.length}门课程，请单击。
+                            目前平台上共开设了{this.state.allCourseList.length}门课程，请单击查看详情。
                         </div>
                         <div>
                             {allCourseList}

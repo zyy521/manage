@@ -191,7 +191,7 @@ class CourseInfo extends React.Component {
                         <Col span={14}>
                             <div className="text-right">
                                 <Button type="default" onClick={this.onBack} style={{marginRight: "5px"}}>返回</Button>
-                                <Button type="primary" disabled>导出分数</Button>
+                                <Button type="primary" disabled style={{display: "none"}}>导出分数</Button>
                             </div>
                         </Col>
                     </Row>
