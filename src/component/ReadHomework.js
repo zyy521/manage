@@ -4,7 +4,6 @@
 import React from 'react';
 import {Button, Form, Card, Col, Input, Layout, Modal, Row, Table,InputNumber,message, Upload} from 'antd';
 import axios from 'axios';
-
 const loginInfo = JSON.parse(sessionStorage.getItem("loginInfo"));
 class CourseInfo extends React.Component {
     constructor(props){
@@ -180,7 +179,7 @@ class CourseInfo extends React.Component {
     render() {
 
         return (
-            <div>
+            <div  >
                 <div className="button10">
                     <Row>
                         <Col span={10}>
@@ -191,13 +190,13 @@ class CourseInfo extends React.Component {
                         <Col span={14}>
                             <div className="text-right">
                                 <Button type="default" onClick={this.onBack} style={{marginRight: "5px"}}>返回</Button>
-                                <Button type="primary" disabled style={{display: "none"}}>导出分数</Button>
+                                <Button type="primary" className={loginInfo.type === 2 ? "labDetailhidden": "labDetailShow"}>导出分数</Button>
                             </div>
                         </Col>
                     </Row>
                 </div>
-                <div>
-                    <Table rowKey="id" columns={this.columns} dataSource={this.state.homeworkList} />
+                <div id="homeWorker">
+                    <Table rowKey="id" columns={this.columns}  dataSource={this.state.homeworkList} />
                 </div>
             </div>
         )
