@@ -98,7 +98,7 @@ class CourseInfo extends React.Component {
     };
 
     getData =()=> {
-        axios.get('/web/epDetail/list',{
+        axios.get('/web/epRecord/list',{
             params: this.params
         }).then((res)=>{
             let list = res.data.list.forEach((item,index) => {
