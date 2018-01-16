@@ -119,7 +119,7 @@ class CourseInfo extends React.Component {
                     console.log(err.status);
                 });
             } else {
-                axios.get('/web/ep',{
+                axios.get('/web/epRecord',{
                     params: {
                         id: this.props.match.params.id
                     }
