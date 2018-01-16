@@ -73,6 +73,7 @@ class Authority extends React.Component {
                 obj.setState({
                     fileList: []
                 });
+                obj.fetchTeacherRules();
             }else{
                 message.error(res.data.errorMessage)
             }
@@ -87,7 +88,7 @@ class Authority extends React.Component {
         const { fileList } = this.state;
         const formData = new FormData();
         formData.append('file', fileList[0]);
-        formData.append('userType', 0);
+        formData.append('userType', 2);
 
         this.setState({
             uploading: true,
@@ -99,8 +100,10 @@ class Authority extends React.Component {
             if(res.data && res.data.success){
                 message.success("上传成功");
                 obj.setState({
-                    fileList: []
+                    fileList: [],
+                    studentVisible: false
                 });
+                obj.fetchStudentsRules();
             }else{
                 message.error(res.data.errorMessage)
             }
@@ -388,7 +391,7 @@ class Authority extends React.Component {
                 title: '工号',
                 dataIndex: 'idNumber',
                 key: 'idNumber',
-                width: "30%"
+                width: "20%"
             }, {
                 title: '角色',
                 dataIndex: 'type',
@@ -413,7 +416,7 @@ class Authority extends React.Component {
                 title: '学号',
                 dataIndex: 'idNumber',
                 key: 'idNumber',
-                width: "30%"
+                width: "20%"
             }, {
                 title: '角色',
                 dataIndex: 'type',
@@ -434,8 +437,8 @@ class Authority extends React.Component {
         ];
 
         const operations = <div className={this.state.selectType === "0" ? "labDetailhidden" : "labDetailVisible"}>
-            <a className={this.state.selectType === "1" ? "labDetailVisible" : "labDetailhidden"} style={{paddingRight: 10}} onClick={this.importTeacher}>导入教师</a>
-            <a className={this.state.selectType === "2" ? "labDetailVisible" : "labDetailhidden"}  onClick={this.importStudent}>导入学生</a>
+            <Button type="primary" className={this.state.selectType === "1" ? "labDetailVisible" : "labDetailhidden"} style={{paddingRight: 10}} onClick={this.importTeacher}>导入教师</Button>
+            <Button type="primary" className={this.state.selectType === "2" ? "labDetailVisible" : "labDetailhidden"}  onClick={this.importStudent}>导入学生</Button>
         </div>;
         const props = {
             action: '//jsonplaceholder.typicode.com/posts/',

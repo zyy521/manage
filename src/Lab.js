@@ -247,6 +247,7 @@ class Lab extends React.Component {
     }
 
     render() {
+        const loginInfo = JSON.parse(sessionStorage.getItem("loginInfo"));
         if (!this.state.logined) {
             return (
                 <Redirect to="/login"/>
@@ -277,7 +278,7 @@ class Lab extends React.Component {
                             <a>停用中</a>
                         </Col>
                         <Col span={13}>
-                            <Button type="primary" style={{float: "right"}}
+                            <Button type="primary" style={{float: "right"}} className={loginInfo.type === 2 ? "labDetailhidden": "labDetailVisible"}
                                     onClick={this.addLab}>添加实验室</Button>
                         </Col>
 
@@ -293,7 +294,7 @@ class Lab extends React.Component {
                                         className={item.status === 3 ? "labCard-1" : item.status === 1 ? "labCard-3" : "labCard-2"} >
                                         <h2>{item.buildingNumber + "号楼" + item.classroom + "号机房"}</h2>
                                         <p>共{item.capacity}台机子</p>
-                                        <a onClick={obj.enableC.bind(this,item)} style={{float: "right"}}>{ item.status === 0 ? "起用" : item.status === 2 ? "" : "停用" }</a>
+                                        <a className={loginInfo.type === 2 ? "labDetailhidden": "labDetailVisible"} onClick={obj.enableC.bind(this,item)} style={{float: "right"}}>{ item.status === 0 ? "起用" : item.status === 2 ? "" : "停用" }</a>
                                     </Card>
                                 </Col>;
                             })
@@ -312,11 +313,12 @@ class Lab extends React.Component {
                     visible={this.state.visible}
                     footer={false}
                     onCancel={this.handleClose}
+                    maskClosable={false}
                 >
                     <div className={!this.state.hasDetail ? "labDetailhidden" : "labDetailVisible"}>
                         {
                             this.state.labDetailDatas.map((item) =>{
-                                return <p>{"周" +item.day + "  第" + item.classBegin + "节至第" + item.classEnd
+                                return <p className="labLists">{"周" +item.day + "  第" + item.classBegin + "节至第" + item.classEnd
                                 + "节  " + item.name}</p>
                             })
                         }

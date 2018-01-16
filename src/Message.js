@@ -20,7 +20,8 @@ class Message extends React.Component {
             logined: true,
             announcementVisible: false,
             announcementDatas: [],
-            messageDatas: []
+            messageDatas: [],
+            selectType: "0"
         }
     }
 
@@ -125,7 +126,17 @@ class Message extends React.Component {
     }
 
     callback = (key) =>{
-        (key === "1") ? this.fetchMsg() : this.fetchNotice();
+        if(key === "1"){
+            this.fetchMsg();
+            this.setState({
+                selectType: "0"
+            })
+        }else if(key === "2"){
+            this.fetchNotice();
+            this.setState({
+                selectType: "1"
+            })
+        }
     }
 
     changeTitle = (e) => {
@@ -202,8 +213,8 @@ class Message extends React.Component {
                 key: 'createTime',
             }
         ];
-
-        const operations = <Button type="primary" onClick={this.announcements.bind(this)}>发布公告</Button>;
+        const loginInfo = JSON.parse(sessionStorage.getItem("loginInfo"));
+        const operations = <Button className={this.state.selectType === "0" || loginInfo.type === 2? "labDetailhidden" : "labDetailVisible"} type="primary" onClick={this.announcements.bind(this)}>发布公告</Button>;
         return (
             <div className="gutter-example">
                 <Tabs defaultActiveKey="1" tabBarExtraContent={operations} onChange={this.callback}>

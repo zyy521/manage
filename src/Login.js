@@ -14,9 +14,11 @@ class Login extends React.Component {
             pPswword: "请输入密码",
             loginType: "2",
             logined: false,
-            idNumber: "101026",
-            password: "123456"
+            idNumber: "",
+            password: ""
         }
+
+        window.loginInfo = [];
     }
 
     onChange(key){
@@ -55,9 +57,11 @@ class Login extends React.Component {
             type: obj.state.loginType
         }).then((res)=>{
             if(res.data && res.data.success){
+                sessionStorage.setItem("loginInfo", JSON.stringify(res.data.entity));
                 obj.setState({
                     logined: true
-                })
+                });
+                sessionStorage.setItem("userId",res.data.entity.id);
             }else{
                 message.error(res.data.errorMessage)
             }
