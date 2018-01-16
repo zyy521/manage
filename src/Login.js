@@ -14,8 +14,8 @@ class Login extends React.Component {
             pPswword: "请输入密码",
             loginType: "2",
             logined: false,
-            idNumber: "101026",
-            password: "123456"
+            idNumber: "",
+            password: ""
         }
 
         window.loginInfo = [];
