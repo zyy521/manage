@@ -4,14 +4,15 @@
 import React from 'react';
 import {Button, Form, Card, Col, Input, Layout, Modal, Row, Table,InputNumber,message, Upload} from 'antd';
 import axios from 'axios';
-const loginInfo = JSON.parse(sessionStorage.getItem("loginInfo"));
+
 class CourseInfo extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             homeworkList: []
         };
-        this.columns = (loginInfo && loginInfo.type  === 1) ? [{
+        this.loginInfo = JSON.parse(sessionStorage.getItem("loginInfo"));
+        this.columns = ( this.loginInfo && this.loginInfo.type  === 1) ? [{
             title: '序号',
             dataIndex: 'index',
             width: 80
@@ -97,9 +98,9 @@ class CourseInfo extends React.Component {
     };
 
     getData =()=> {
-        let urls = (loginInfo.type === 1) ? '/web/epDetail/list' : "/web/epRecord/list";
+        let urls = (this.loginInfo.type === 1) ? '/web/epDetail/list' : "/web/epRecord/list";
         axios.get(urls,{
-            params: (loginInfo.type === 1) ? this.params : {epId:this.props.match.params.id}
+            params: (this.loginInfo.type === 1) ? this.params : {epId:this.props.match.params.id}
         }).then((res)=>{
             let list = res.data.list.forEach((item,index) => {
                     let newItem = item;
@@ -107,7 +108,7 @@ class CourseInfo extends React.Component {
                     return newItem;
                 }),
                 newState = {homeworkList: res.data.list};
-            if(loginInfo.type === 1) {
+            if(this.loginInfo.type === 1) {
                 axios.get('/web/epRecord',{
                     params: {
                         id: this.props.match.params.id
@@ -176,8 +177,11 @@ class CourseInfo extends React.Component {
             console.log(err.status);
         })
     };
-    render() {
 
+    exportFens = ()=>{
+        window.location.href = '/web/epRecord/export?epRecordId=' + this.props.match.params.id
+    }
+    render() {
         return (
             <div  >
                 <div className="button10">
@@ -190,7 +194,7 @@ class CourseInfo extends React.Component {
                         <Col span={14}>
                             <div className="text-right">
                                 <Button type="default" onClick={this.onBack} style={{marginRight: "5px"}}>返回</Button>
-                                <Button type="primary" className={loginInfo.type === 2 ? "labDetailhidden": "labDetailShow"}>导出分数</Button>
+                                <Button type="primary" className={this.loginInfo.type === 2 ? "labDetailhidden": "labDetailShow"} onClick={this.exportFens}>导出分数</Button>
                             </div>
                         </Col>
                     </Row>
