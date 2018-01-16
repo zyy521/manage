@@ -57,7 +57,7 @@ class CourseInfo extends React.Component {
             width: 80
         },{
             title: '实验报告名称',
-            dataIndex: 'epFileName'
+            dataIndex: 'epName'
         }, {
             title: '操作',
             dataIndex: 'id',
@@ -98,8 +98,9 @@ class CourseInfo extends React.Component {
     };
 
     getData =()=> {
-        axios.get('/web/epDetail/list',{
-            params: this.params
+        let urls = (loginInfo.type === 1) ? '/web/epDetail/list' : "/web/epRecord/list";
+        axios.get(urls,{
+            params: (loginInfo.type === 1) ? this.params : {epId:this.props.match.params.id}
         }).then((res)=>{
             let list = res.data.list.forEach((item,index) => {
                     let newItem = item;
