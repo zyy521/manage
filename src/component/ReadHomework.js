@@ -94,7 +94,7 @@ class CourseInfo extends React.Component {
 
     // 下载
     onDownLoad =(text)=> {
-        location.href = text;
+        window.location.href = text;
     };
 
     getData =()=> {
