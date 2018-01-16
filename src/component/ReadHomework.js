@@ -98,7 +98,7 @@ class CourseInfo extends React.Component {
     };
 
     getData =()=> {
-        axios.get('/web/epRecord/list',{
+        axios.get('/web/epDetail/list',{
             params: this.params
         }).then((res)=>{
             let list = res.data.list.forEach((item,index) => {
@@ -119,7 +119,7 @@ class CourseInfo extends React.Component {
                     console.log(err.status);
                 });
             } else {
-                axios.get('/web/epRecord',{
+                axios.get('/web/ep',{
                     params: {
                         id: this.props.match.params.id
                     }
