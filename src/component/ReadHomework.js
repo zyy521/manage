@@ -12,7 +12,7 @@ class CourseInfo extends React.Component {
         this.state = {
             homeworkList: []
         };
-        this.columns = (loginInfo.type === 1) ? [{
+        this.columns = (loginInfo && loginInfo.type  === 1) ? [{
             title: '序号',
             dataIndex: 'index',
             width: 80
@@ -177,6 +177,7 @@ class CourseInfo extends React.Component {
         })
     };
     render() {
+
         return (
             <div>
                 <div className="button10">
